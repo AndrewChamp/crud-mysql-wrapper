@@ -61,7 +61,7 @@ class crud{
 	public function query($sql){
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute();
-		$result = $statement->fetchAll();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 		return $result;
 	}
 	
@@ -69,7 +69,7 @@ class crud{
 	public function read($table, $where=null, $order=null, $limit=null){
 		$statement = $this->dbh->prepare("SELECT * FROM `".$table."` ".($where != null ? "WHERE ".$where : '')." ".($order != null ? "ORDER BY ".$order : '')." ".($limit != null ? "LIMIT ".$limit : ''));
 		$statement->execute();
-		$result = $statement->fetchAll();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 		return $result;
 	}
 	
