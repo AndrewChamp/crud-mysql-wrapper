@@ -33,10 +33,9 @@ class crud{
 	
 	/**
 	 * Sets database connection properties.
-	 * Notice: You can't call the class directly. You have to call to the obtain method.
-	 * Example: $crud = crud::obtain('server', 'user', 'password' 'database');
+	 * Notice: You can call the class directly or you can call to the obtain method to reuse the object.
 	 */
-	private function __construct($_server=null, $_user=null, $_password=null, $_database=null){
+	public function __construct($_server=null, $_user=null, $_password=null, $_database=null){
 		if($_server == null || $_user == null || $_password == null || $_database == null):
 			print 'Please input database credentials';
 		else:
