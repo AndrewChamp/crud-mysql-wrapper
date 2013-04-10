@@ -31,7 +31,12 @@ class crud{
 	private $dbh;
 	
 	
-	public function __construct($_server=null, $_user=null, $_password=null, $_database=null){
+	/**
+	 * Sets database connection properties.
+	 * Notice: You can't call the class directly. You have to call to the obtain method.
+	 * Example: $crud = crud::obtain('server', 'user', 'password' 'database');
+	 */
+	private function __construct($_server=null, $_user=null, $_password=null, $_database=null){
 		if($_server == null || $_user == null || $_password == null || $_database == null):
 			print 'Please input database credentials';
 		else:
@@ -43,7 +48,11 @@ class crud{
 		endif;
 	}
 		
-		
+	
+	/**
+	 * Singleton Pattern.
+	 * Allows for reusing the initial instanited object.  Prevents multiple mysql connections for the same call.
+	 */
 	public static function obtain($_server=null, $_user=null, $_password=null, $_database=null){
 		if(!self::$instance):
 			self::$instance = new crud($_server, $_user, $_password, $_database); 
@@ -51,13 +60,19 @@ class crud{
 		return self::$instance; 
 	}
 		
-		
+	
+	/**
+	 * Establishes the initial connection to the database.
+	 */
 	public function connect(){
 		$this->dbh = new PDO("mysql:host=".$this->server.";dbname=".$this->database, $this->user, $this->password);
 		$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 		
-		
+	
+	/**
+	 * Call to a table.
+	 */
 	public function query($sql){
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute();
@@ -66,6 +81,9 @@ class crud{
 	}
 	
 	
+	/**
+	 * Generic table query.
+	 */
 	public function read($table, $where=null, $order=null, $limit=null){
 		$statement = $this->dbh->prepare("SELECT * FROM `".$table."` ".($where != null ? "WHERE ".$where : '')." ".($order != null ? "ORDER BY ".$order : '')." ".($limit != null ? "LIMIT ".$limit : ''));
 		$statement->execute();
@@ -74,6 +92,9 @@ class crud{
 	}
 	
 	
+	/**
+	 * Update query.
+	 */
 	public function update($table, $data, $where='1'){
 		$q = "UPDATE `$table` SET ";
 		foreach($data as $key=>$val):
@@ -94,6 +115,9 @@ class crud{
 	}
 		
 	
+	/**
+	 * Insert query.
+	 */
 	public function insert($table, $data){
 		$q = "INSERT INTO `$table` ";
 		$v = ''; $n = '';
@@ -113,7 +137,10 @@ class crud{
 		$statement->execute();
 	}
 		
-		
+	
+	/**
+	 * Delete query.
+	 */
 	public function delete($table, $data){
 		$statement = $this->dbh->prepare("DELETE FROM `".$table."` WHERE ".$data);
 		$statement->execute();
