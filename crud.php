@@ -36,15 +36,14 @@ class crud{
 	 * Notice: You can call the class directly or you can call to the obtain method to reuse the object.
 	 */
 	public function __construct($_server=null, $_user=null, $_password=null, $_database=null){
-		if($_server == null || $_user == null || $_password == null || $_database == null):
-			print 'Please input database credentials';
-		else:
-			$this->server = $_server;
-			$this->user = $_user;
-			$this->password = $_password;
-			$this->database = $_database;
-			$this->connect();
-		endif;
+		if($_server == null || $_user == null || $_password == null || $_database == null)
+			throw new Exception('Please input database credentials for '.__CLASS__.' class.');
+		
+		$this->server = $_server;
+		$this->user = $_user;
+		$this->password = $_password;
+		$this->database = $_database;
+		$this->connect();
 	}
 		
 	
@@ -53,9 +52,8 @@ class crud{
 	 * Allows for reusing the initial instanited object.  Prevents multiple mysql connections for the same call.
 	 */
 	public static function obtain($_server=null, $_user=null, $_password=null, $_database=null){
-		if(!self::$instance):
+		if(!self::$instance)
 			self::$instance = new crud($_server, $_user, $_password, $_database); 
-		endif;
 		return self::$instance; 
 	}
 		
@@ -75,19 +73,7 @@ class crud{
 	public function query($sql){
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute();
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		return $result;
-	}
-	
-	
-	/**
-	 * Generic table query.
-	 */
-	public function read($table, $where=null, $order=null, $limit=null){
-		$statement = $this->dbh->prepare("SELECT * FROM `".$table."` ".($where != null ? "WHERE ".$where : '')." ".($order != null ? "ORDER BY ".$order : '')." ".($limit != null ? "LIMIT ".$limit : ''));
-		$statement->execute();
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		return $result;
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
 	
@@ -145,6 +131,15 @@ class crud{
 		$statement->execute();
 	}
 	
+	
+	/**
+	 * Number of returned results.
+	 */
+	public function num($results){
+		return count($results);
+	}
+
+
 }
 
 ?>
