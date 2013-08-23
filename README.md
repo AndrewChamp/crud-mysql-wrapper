@@ -6,11 +6,7 @@ Create, Read, Update, Delete wrapper for MySQL.  Simple, easy to use class using
 ## How To Use
 
 ### Instantiating the Class
-```php
-function __autoload($class_name){
-	include_once($class_name.'.php');
-}
-	
+```php	
 $crud = crud::obtain('localhost', 'databaseUsername', 'databasePassword', 'databaseName');
 ```
 
