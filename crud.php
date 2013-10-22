@@ -140,6 +140,16 @@ class crud{
 	}
 
 
+	/**
+	 * Number of active connections.
+	 */
+	public function connections($desc='Active MySQL Connections: '){
+		$statement = $this->dbh->prepare("SHOW STATUS WHERE variable_name = 'Threads_connected'");
+		$connections = $statement->execute();
+		$con = $statement->fetch($connections);
+		return $desc.$con['Value'];
+	}
+
 }
 
 ?>
