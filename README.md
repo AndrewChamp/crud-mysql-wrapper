@@ -12,8 +12,8 @@ $crud = crud::obtain('localhost', 'databaseUsername', 'databasePassword', 'datab
 
 ### Reading Table
 ```php
-$crud->query("SELECT * FROM table");
-print_r($crud);
+$result = $crud->query("SELECT * FROM table");
+print_r($result);
 ```
 
 ### Inserting new data in a table
