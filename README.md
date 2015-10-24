@@ -12,7 +12,7 @@ $crud = crud::obtain('localhost', 'databaseUsername', 'databasePassword', 'datab
 
 ### Reading Table
 ```php
-$result = $crud->query("SELECT * FROM table");
+$result = $crud->query("SELECT * FROM your_table");
 print_r($result);
 ```
 
@@ -20,17 +20,22 @@ print_r($result);
 ```php
 $data['firstname'] = 'Jack';
 $data['lastname'] = 'Jones';
-$crud->insert('users', $data);
+$crud->insert('your_table', $data);
 ```
 
 ### Updating data
 ```php
 $data['firstname'] = 'Joe';
 $data['lastname'] = 'Mama';
-$crud->update('users', $data, 'user_id=4');
+$crud->update('your_table', $data, 'user_id=4');
 ```
 
-### Deleting data
+### Deleting row
 ```php
-$crud->delete('users', 'user_id=1');
+$crud->delete('your_table', 'id=123');
+```
+
+### Truncate table
+```php
+$crud->truncate('your_table');
 ```
