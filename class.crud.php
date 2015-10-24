@@ -133,6 +133,15 @@ class crud{
 	
 	
 	/**
+	 * Truncates table.
+	 */
+	public function truncate($table){ 
+		$statement = $this->dbh->prepare("TRUNCATE TABLE ".$table);
+		$statement->execute();
+	}
+	
+	
+	/**
 	 * Number of returned results.
 	 */
 	public function num($results){
