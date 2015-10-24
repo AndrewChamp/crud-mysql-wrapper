@@ -39,3 +39,8 @@ $crud->delete('your_table', 'id=123');
 ```php
 $crud->truncate('your_table');
 ```
+
+### Drop table
+```php
+$crud->drop('your_table');
+```

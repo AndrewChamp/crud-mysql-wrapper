@@ -142,6 +142,15 @@ class crud{
 	
 	
 	/**
+	 * Drops table.
+	 */
+	public function drop($table){
+		$statement = $this->dbh->prepare("DROP TABLE IF EXISTS ".$table);
+		$statment->execute();
+	}
+	
+	
+	/**
 	 * Number of returned results.
 	 */
 	public function num($results){
