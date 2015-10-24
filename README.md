@@ -36,13 +36,13 @@ $crud->delete('your_table', 'id=123');
 ```
 
 ### Truncate table
-*Empties all data from the table*
+*Empties all data from the table.*
 ```php
 $crud->truncate('your_table');
 ```
 
 ### Drop table
-*Completely deletes the table*
+*Completely deletes the table.*
 ```php
 $crud->drop('your_table');
 ```
