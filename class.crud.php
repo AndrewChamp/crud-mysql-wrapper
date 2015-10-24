@@ -2,7 +2,7 @@
 
 /**
  * The MIT License (MIT)
- * Copyright (c) 2013 Andrew Champ | https://plus.google.com/106274972321613013294/about
+ * Copyright (c) 2013-2015 Andrew Champ | https://google.com/+AndrewChamp
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
