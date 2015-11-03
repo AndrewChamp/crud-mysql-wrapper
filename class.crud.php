@@ -121,7 +121,17 @@ class crud{
 		$statement = $this->dbh->prepare($q);
 		$statement->execute();
 	}
-		
+	
+	
+	/**
+	 * Create table. 
+	 * Note: Using the method, $this->query(), will generate an error due to $statement->fetchAll(PDO::FETCH_ASSOC);  Use this instead. 
+	 */
+	public function create($sql){
+		$statement = $this->dbh->prepare($sql);
+		$statement->execute();
+	}
+	
 	
 	/**
 	 * Delete query.
