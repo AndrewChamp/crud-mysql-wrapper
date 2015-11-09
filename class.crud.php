@@ -156,7 +156,7 @@ class crud{
 	 */
 	public function drop($table){
 		$statement = $this->dbh->prepare("DROP TABLE IF EXISTS ".$table);
-		$statment->execute();
+		$statement->execute();
 	}
 	
 	
