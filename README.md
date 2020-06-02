@@ -1,7 +1,7 @@
 C.R.U.D. MySQL Wrapper
 ==================
 
-Create, Read, Update, Delete wrapper for MySQL.  Simple, easy to use class using PDO for simplifing redundant MySQL connections and methods.
+Create, Read, Update, Delete wrapper for MySQL connections. Simpler and easier to use class using PDO & Singleton pattern for simplifying redundant MySQL connections and queries.
 
 ## How To Use
 
